@@ -3,8 +3,3 @@
 - name: Execute docker command {{ command }} 
   command: docker run {{ options }} {{ image }}:{{ tag }} {{ command }}
   register: output
-
-- name: Print output
-  debug:
-    var: output
-    verbosity: 3
