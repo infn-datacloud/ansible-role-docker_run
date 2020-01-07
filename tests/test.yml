@@ -2,7 +2,8 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - role: ansible-role-k3s
-      master_ip: localhost
-      mode: server
-      node_label: unlabelled=true
+    - role: ansible-role-docker_run
+      image: ubuntu
+      tag: latest
+      options: --net host
+      command: echo "test"
