@@ -30,6 +30,7 @@ None
 Example Playbook
 ----------------
 
+```
 - hosts: localhost
   remote_user: root
   roles:
@@ -39,6 +40,8 @@ Example Playbook
       tag: latest
       ports: "80" 
       command: "printenv"
+```
+
 
 
 
