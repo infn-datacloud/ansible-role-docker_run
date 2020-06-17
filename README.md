@@ -1,31 +1,43 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+The role starts a docker run from images and parameters provided.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+Docker need to be available in the system. Role suitable for Ubuntu Xsenial.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+   app_name: name of the container
+      image: image to be used, default ubuntu
+        tag: tag for the image to be used, default latest
+      ports: as from the docker syntax: 8080 or 8080:80, default "80", mandatory
+      command: command to be executed, can be left blank
+
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ansible-role-docker_run
+      app_name: container
+      image: ubuntu
+      tag: latest
+      ports: "80" 
+      command: "printenv"
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+
 
 License
 -------
@@ -35,4 +47,4 @@ BSD
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Alessandro Costantini (INFN-CNAF), to continue the work of Diego Ciangottini (INFN-PG)
