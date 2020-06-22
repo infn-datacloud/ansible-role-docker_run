@@ -17,4 +17,4 @@
         published_ports:
           - "{{ ports }}"
         detach: true
-        state: running
+        state: started
