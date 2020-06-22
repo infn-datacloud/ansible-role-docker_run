@@ -10,11 +10,11 @@
         name: docker-py
 
     - name: Running the container
-      docker:
+      docker_container:
         name: "{{ name }}"
         image: "{{ image }}:{{ tag }}"
         command: "{{ command }}"
-        ports:
+        published_ports:
           - "{{ ports }}"
         detach: true
         state: running
