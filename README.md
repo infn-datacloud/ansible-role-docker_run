@@ -12,7 +12,7 @@ Role Variables
 --------------
 
 ```
-app_name: name of the container
+appname: name of the container
 image: image to be used, default ubuntu
 tag: tag for the image to be used, default latest
 ports: as from the docker syntax: 8080 or 8080:80, default "80", mandatory
