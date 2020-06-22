@@ -11,7 +11,7 @@
 
     - name: Running the container
       docker:
-        name: "{{ app_name }}"
+        name: "{{ name }}"
         image: "{{ image }}:{{ tag }}"
         command: "{{ command }}"
         ports:
