@@ -5,10 +5,10 @@
 #        name: python-pip 
 #        state: present
 #
-#    - name: install docker-py
-#      pip: 
-#        name: docker-py
-#
+    - name: install docker
+      pip: 
+        name: docker
+
     - name: Running the container
       docker_container:
         name: "{{ appname }}"
