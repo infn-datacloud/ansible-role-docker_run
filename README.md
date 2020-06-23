@@ -34,7 +34,7 @@ Example Playbook
   remote_user: root
   roles:
     - role: ansible-role-docker_run
-      app_name: container
+      appname: container
       image: ubuntu
       tag: latest
       ports: "80" 
