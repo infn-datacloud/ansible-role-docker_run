@@ -6,7 +6,7 @@ The role starts a docker run from images and parameters provided.
 Requirements
 ------------
 
-Docker need to be available in the system. Role suitable for Ubuntu Xsenial.
+Docker need to be available in the system. Role suitable for Ubuntu Xsenial (16.04).
 
 Role Variables
 --------------
