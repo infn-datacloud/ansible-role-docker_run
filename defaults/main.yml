@@ -1,6 +1,7 @@
 ---
-# defaults file for ansible-role-k3s
+# defaults file for ansible-role-docker_run
+appname: ubuntu
 image: ubuntu
-tag: version
-options: ""
+tag: latest
+ports: "80"
 command: ""
