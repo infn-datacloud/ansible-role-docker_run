@@ -1,4 +1,4 @@
-Role Name
+Role ansible-role-docker_run
 =========
 
 The role starts a docker run from images and parameters provided.
