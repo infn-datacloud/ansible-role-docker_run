@@ -13,6 +13,7 @@
       service: 
         name: docker
         state: started
+        enabled: yes
 
     - name: Running the container
       docker_container:
