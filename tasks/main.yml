@@ -36,6 +36,7 @@
       docker_container:
         name: "{{ appname }}"
         image: "{{ image }}:{{ tag }}"
+        env_file: /opt/{{ appname }}/.env
         command: "{{ command }}"
         ports:
           - "{{ ports }}"
