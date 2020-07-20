@@ -15,6 +15,23 @@
 #        state: started
 #        enabled: yes
 #
+    - name: "create directory path to store the configuration files"
+        file:
+        path: "/opt/{{ docker_appname }}"
+        state: directory
+        mode: 0755
+        
+    - name: debug
+        debug: 
+          var: environment_variables
+
+    - name: Set environment variables
+      lineinfile:
+        path: /opt/{{ docker_appname }}/.env
+        line: "{{ item.key }}={{ item.value }}"
+        create: yes
+      with_dict: "{{ environment_variables }}"
+
     - name: Running the container
       docker_container:
         name: "{{ appname }}"
