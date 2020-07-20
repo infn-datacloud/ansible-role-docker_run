@@ -16,14 +16,14 @@
 #        enabled: yes
 #
     - name: "create directory path to store the configuration files"
-        file:
+      file:
         path: "/opt/{{ docker_appname }}"
         state: directory
         mode: 0755
         
     - name: debug
-        debug: 
-          var: environment_variables
+      debug: 
+        var: environment_variables
 
     - name: Set environment variables
       lineinfile:
