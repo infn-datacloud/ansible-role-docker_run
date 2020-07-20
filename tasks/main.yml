@@ -17,7 +17,7 @@
 #
     - name: "create directory path to store the configuration files"
       file:
-        path: "/opt/{{ docker_appname }}"
+        path: "/opt/{{ appname }}"
         state: directory
         mode: 0755
         
@@ -27,7 +27,7 @@
 
     - name: Set environment variables
       lineinfile:
-        path: /opt/{{ docker_appname }}/.env
+        path: /opt/{{ appname }}/.env
         line: "{{ item.key }}={{ item.value }}"
         create: yes
       with_dict: "{{ environment_variables }}"
