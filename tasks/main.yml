@@ -20,6 +20,12 @@
         path: "/opt/{{ appname }}"
         state: directory
         mode: 0755
+      
+    - name: Touch the configuration file 
+      file:
+        path: /opt/{{ appname }}/.env
+        state: touch
+        mode: u=rw,g=r,o=r
         
     - name: debug
       debug: 
