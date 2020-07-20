@@ -21,11 +21,11 @@ command: command to be executed, can be left blank
 
 Environment variables
 --------------
+Environment variables are supported and passed via TOSCA Template as a list on the form FOO=BAR
+Varaible(s) are copied down into a file .env that is used to start the container.
 ```
-env_file: path to file containig a list of environment variables on the form FOO=BAR
+env_file: /opt/{{ appname }}/.env  --> path to file containig a list of environment variables on the form FOO=BAR
 ```
-
-
 
 Dependencies
 ------------
@@ -46,8 +46,6 @@ Example Playbook
       ports: "80" 
       command: "printenv"
 ```
-
-
 
 
 License
