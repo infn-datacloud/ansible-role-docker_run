@@ -48,7 +48,6 @@
         image: "{{ image }}:{{ tag }}"
         env_file: /opt/{{ appname }}/.env
         command: "{{ command }}"
-        ports:
-          - "{{ ports }}"
+        ports: "{{ ports }}"
         detach: True
         state: started
