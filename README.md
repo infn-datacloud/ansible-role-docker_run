@@ -6,19 +6,19 @@ The role starts a docker container from the specified image and parameters.
 Requirements
 ------------
 
-Docker need to be available in the system. 
+Docker needs to be available in the system. This requirement is managed via indigo-dc.docker dependency)  
 
 Role Variables
 --------------
 
-```
-`docker_run_appname`: name of the container
-`docker_run_image`: image to be used. Default: ubuntu
-`docker_run_tag`: tag for the image to be used. Default: latest
-`docker_run_env_variables`: list of environment variables (key/value pair) - see below. Default: [] 
-`docker_run_ports`: list of ports to publish from the container to the host. Use the docker CLI syntax, e.g. [ "8080" ] or [ "8080:80" ].  Default: []
-`docker_run_command`: command to be executed, can be left blank
-```
+
+- `docker_run_appname`: name of the container
+- `docker_run_image`: image to be used. Default: ubuntu
+- `docker_run_tag`: tag for the image to be used. Default: latest
+- `docker_run_env_variables`: list of environment variables (key/value pair) - see below. Default: [] 
+- `docker_run_ports`: list of ports to publish from the container to the host. Use the docker CLI syntax, e.g. [ "8080" ] or [ "8080:80" ].  Default: []
+- `docker_run_command`: command to be executed, can be left blank
+
 
 Environment variables
 --------------
@@ -31,7 +31,7 @@ env_file: /opt/{{ docker_run_appname }}/.env  --> path to file containig a list 
 Dependencies
 ------------
 
-None
+- indigo-dc.docker
 
 Example Playbook
 ----------------
