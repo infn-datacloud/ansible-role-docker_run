@@ -1,29 +1,14 @@
 ---
 
-#    - name: Install pip
-#      apt:
-#        name: python-pip 
-#        state: present
-#
-#    - name: Install docker
-#      pip: 
-#        name: docker
-#        
-#    - name: Ensure docker service is enabled
-#      service: 
-#        name: docker
-#        state: started
-#        enabled: yes
-#
     - name: "create directory path to store the configuration files"
       file:
-        path: "/opt/{{ appname }}"
+        path: "/opt/{{ docker_run_appname }}"
         state: directory
         mode: 0755
       
     - name: Touch the configuration file 
       file:
-        path: /opt/{{ appname }}/.env
+        path: /opt/{{ docker_run_appname }}/.env
         state: touch
         mode: u=rw,g=r,o=r
         
@@ -33,10 +18,10 @@
 
     - name: Set environment variables
       lineinfile:
-        path: /opt/{{ appname }}/.env
+        path: /opt/{{ docker_run_appname }}/.env
         line: "{{ item.key }}={{ item.value }}"
         create: yes
-      with_dict: "{{ environment_variables }}"
+      with_dict: "{{ docker_run_env_variables }}"
 
     - name: debug
       debug: 
@@ -44,10 +29,10 @@
 
     - name: Running the container
       docker_container:
-        name: "{{ appname }}"
-        image: "{{ image }}:{{ tag }}"
-        env_file: /opt/{{ appname }}/.env
-        command: "{{ command }}"
-        ports: "{{ ports }}"
+        name: "{{ docker_run_appname }}"
+        image: "{{ docker_run_image }}:{{ docker_run_tag }}"
+        env_file: /opt/{{ docker_run_appname }}/.env
+        command: "{{ docker_run_command }}"
+        ports: "{{ docker_run_ports }}"
         detach: True
         state: started

@@ -1,7 +1,8 @@
 ---
 # defaults file for ansible-role-docker_run
-appname: ubuntu
-image: ubuntu
-tag: latest
-ports: "80"
-command: ""
+docker_run_appname: ubuntu
+docker_run_image: ubuntu
+docker_run_tag: latest
+docker_run_env_variables: []
+docker_run_ports: []
+docker_run_command: ""
