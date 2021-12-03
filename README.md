@@ -1,36 +1,37 @@
-Role ansible-role-docker_run
+Role docker_run
 =========
 
-The role starts a docker run from images and parameters provided.
+The role starts a docker container from the specified image and parameters.
 
 Requirements
 ------------
 
-Docker need to be available in the system. Role suitable for Ubuntu Xsenial (16.04).
+Docker needs to be available in the system. This requirement is managed via indigo-dc.docker dependency)  
 
 Role Variables
 --------------
 
-```
-appname: name of the container
-image: image to be used, default ubuntu
-tag: tag for the image to be used, default latest
-ports: as from the docker syntax: 8080 or 8080:80, default "80", mandatory
-command: command to be executed, can be left blank
-```
+
+- `docker_run_appname`: name of the container
+- `docker_run_image`: image to be used. Default: ubuntu
+- `docker_run_tag`: tag for the image to be used. Default: latest
+- `docker_run_env_variables`: list of environment variables (key/value pair) - see below. Default: [] 
+- `docker_run_ports`: list of ports to publish from the container to the host. Use the docker CLI syntax, e.g. [ "8080" ] or [ "8080:80" ].  Default: []
+- `docker_run_command`: command to be executed, can be left blank
+
 
 Environment variables
 --------------
-Environment variables are supported and passed via TOSCA Template as a list on the form FOO=BAR
+Environment variables are supported and passed as a list of key/value pairs.
 Varaible(s) are copied down into a file .env that is used to start the container.
 ```
-env_file: /opt/{{ appname }}/.env  --> path to file containig a list of environment variables on the form FOO=BAR
+env_file: /opt/{{ docker_run_appname }}/.env  --> path to file containig a list of environment variables in the form FOO=BAR
 ```
 
 Dependencies
 ------------
 
-None
+- indigo-dc.docker
 
 Example Playbook
 ----------------
@@ -40,11 +41,11 @@ Example Playbook
   remote_user: root
   roles:
     - role: ansible-role-docker_run
-      appname: container
-      image: ubuntu
-      tag: latest
-      ports: "80" 
-      command: "printenv"
+      docker_run_appname: nginx
+      docker_run_image: nginx
+      docker_run_tag: latest
+      docker_run_ports: [ "8080:80" ] 
+      docker_run_command: ""
 ```
 
 
