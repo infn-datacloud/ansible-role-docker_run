@@ -1,12 +1,12 @@
-Role ansible-role-docker_run
+Role docker_run
 =========
 
-The role starts a docker run from images and parameters provided.
+The role starts a docker container from the specified image and parameters.
 
 Requirements
 ------------
 
-Docker need to be available in the system. Role suitable for Ubuntu Xsenial (16.04).
+Docker need to be available in the system. 
 
 Role Variables
 --------------
@@ -15,16 +15,16 @@ Role Variables
 appname: name of the container
 image: image to be used, default ubuntu
 tag: tag for the image to be used, default latest
-ports: as from the docker syntax: 8080 or 8080:80, default "80", mandatory
+ports: list of ports in the docker syntax, e.g. [ "8080" ] or [ "8080:80" ], default [ "80" ], mandatory
 command: command to be executed, can be left blank
 ```
 
 Environment variables
 --------------
-Environment variables are supported and passed via TOSCA Template as a list on the form FOO=BAR
+Environment variables are supported and passed as a list of key/value pairs.
 Varaible(s) are copied down into a file .env that is used to start the container.
 ```
-env_file: /opt/{{ appname }}/.env  --> path to file containig a list of environment variables on the form FOO=BAR
+env_file: /opt/{{ appname }}/.env  --> path to file containig a list of environment variables in the form FOO=BAR
 ```
 
 Dependencies
