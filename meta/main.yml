@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: docker_run
   author: Alessandro Costantini, Diego Ciangottini
   description: your description
   company: INFN
