@@ -6,3 +6,5 @@ docker_run_tag: latest
 docker_run_env_variables: []
 docker_run_ports: []
 docker_run_command: ""
+host_volume: []
+docker_run_volume: []
