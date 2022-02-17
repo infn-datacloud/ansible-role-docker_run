@@ -18,7 +18,8 @@ Role Variables
 - `docker_run_env_variables`: list of environment variables (key/value pair) - see below. Default: [] 
 - `docker_run_ports`: list of ports to publish from the container to the host. Use the docker CLI syntax, e.g. [ "8080" ] or [ "8080:80" ].  Default: []
 - `docker_run_command`: command to be executed, can be left blank
-
+- `docker_host_volume`: volume path on the host, to be mount into the container
+- `docker_run_volume`: volume path on the container side, from the host_volume variable
 
 Environment variables
 --------------
@@ -46,6 +47,8 @@ Example Playbook
       docker_run_tag: latest
       docker_run_ports: [ "8080:80" ] 
       docker_run_command: ""
+      docker_host_volume: ""
+      docker_run_volume: ""
 ```
 
 

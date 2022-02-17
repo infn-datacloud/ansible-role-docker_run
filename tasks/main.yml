@@ -28,5 +28,6 @@
         env_file: /opt/{{ docker_run_appname }}/.env
         command: "{{ docker_run_command }}"
         ports: "{{ docker_run_ports }}"
+        volumes: "{{ docker_host_volume }}:{{ docker_run_volume }}"
         detach: True
         state: started
