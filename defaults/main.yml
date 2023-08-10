@@ -6,5 +6,4 @@ docker_run_tag: latest
 docker_run_env_variables: []
 docker_run_ports: []
 docker_run_command: ""
-docker_run_host_volume: "/data"
 docker_run_volume: ""
