@@ -3,8 +3,8 @@
   remote_user: root
   roles:
     - role: ansible-role-docker_run
-      appname: container
-      image: ubuntu
-      tag: latest
-      ports: "80" 
-      command: "printenv"
+      doker_run_appname: container
+      doker_run_image: ubuntu
+      doker_run_tag: latest
+      doker_run_ports: "80" 
+      doker_run_command: "printenv"
