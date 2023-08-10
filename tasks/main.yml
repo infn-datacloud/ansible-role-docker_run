@@ -21,7 +21,7 @@
 
     - name: Set docker_run_volume_on_container variable
       set_fact:
-        docker_run_volume_on_container: "{{ docker_run_host_volume }}:{{ docker_run_volume}}:rw"
+        docker_run_volume_on_container: "{{ docker_run_host_volume }}:{{ docker_run_volume }}:rw"
       when: docker_run_volume is defined and docker_run_volume != ''
 
     - name: Running the container
