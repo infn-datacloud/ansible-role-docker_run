@@ -8,3 +8,4 @@
       doker_run_tag: latest
       doker_run_ports: "80" 
       doker_run_command: "printenv"
+      docker_run_volume: ""
