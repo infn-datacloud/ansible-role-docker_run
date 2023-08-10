@@ -8,4 +8,4 @@
       docker_run_tag: latest
       docker_run_ports: "8080:80"
       docker_run_command: ""
-      docker_run_volumes: /data
+      docker_run_volumes: ""
