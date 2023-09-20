@@ -3,8 +3,9 @@
   remote_user: root
   roles:
     - role: ansible-role-docker_run
-      appname: nginx
-      image: nginx
-      tag: latest
-      ports: "8080:80"
-      command: ""
+      docker_run_appname: nginx
+      docker_run_image: nginx
+      docker_run_tag: latest
+      docker_run_ports: "8080:80"
+      docker_run_command: ""
+      docker_run_volumes: ""

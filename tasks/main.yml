@@ -12,7 +12,6 @@
         state: touch
         mode: u=rw,g=r,o=r
         
-
     - name: Set environment variables
       lineinfile:
         path: /opt/{{ docker_run_appname }}/.env
@@ -20,6 +19,10 @@
         create: yes
       with_dict: "{{ docker_run_env_variables }}"
 
+    - name: Set docker_run_volume_on_container variable
+      set_fact:
+        docker_run_volume_on_container: "{{ docker_run_host_volume }}:{{ docker_run_volume }}:rw"
+      when: docker_run_volume is defined and docker_run_volume != ''
 
     - name: Running the container
       docker_container:
@@ -28,5 +31,6 @@
         env_file: /opt/{{ docker_run_appname }}/.env
         command: "{{ docker_run_command }}"
         ports: "{{ docker_run_ports }}"
+        volumes: "{{ docker_run_volume_on_container | default(omit) }}"
         detach: True
         state: started
