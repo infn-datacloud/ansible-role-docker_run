@@ -24,13 +24,13 @@
         docker_run_volume_on_container: "{{ docker_run_host_volume }}:{{ docker_run_volume }}:rw"
       when: docker_run_volume is defined and docker_run_volume != ''
 
-    - name: Running the container
-      docker_container:
-        name: "{{ docker_run_appname }}"
-        image: "{{ docker_run_image }}:{{ docker_run_tag }}"
-        env_file: /opt/{{ docker_run_appname }}/.env
-        command: "{{ docker_run_command }}"
-        ports: "{{ docker_run_ports }}"
-        volumes: "{{ docker_run_volume_on_container | default(omit) }}"
-        detach: True
-        state: started
+#    - name: Running the container
+#      docker_container:
+#        name: "{{ docker_run_appname }}"
+#        image: "{{ docker_run_image }}:{{ docker_run_tag }}"
+#        env_file: /opt/{{ docker_run_appname }}/.env
+#        command: "{{ docker_run_command }}"
+#        ports: "{{ docker_run_ports }}"
+#        volumes: "{{ docker_run_volume_on_container | default(omit) }}"
+#        detach: True
+#        state: started
