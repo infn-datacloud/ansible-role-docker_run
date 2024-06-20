@@ -1,5 +1,10 @@
 ---
 
+    - name: Update repositories cache and install "python3-docker" package
+      apt:
+         name: python3-docker
+         update_cache: yes
+
     - name: "create directory path to store the configuration files"
       file:
         path: "/opt/{{ docker_run_appname }}"
