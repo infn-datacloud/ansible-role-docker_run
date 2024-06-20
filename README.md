@@ -37,7 +37,8 @@ Volume path on the host side is set by default to "/data". It can be changed by 
 Dependencies
 ------------
 
-- indigo-dc.docker
+-  role: ansible-role-docker
+from https://github.com/infn-datacloud/ansible-role-docker
 
 Example Playbook
 ----------------
