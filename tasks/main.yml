@@ -29,6 +29,13 @@
         docker_run_volume_on_container: "{{ docker_run_host_volume }}:{{ docker_run_volume }}:rw"
       when: docker_run_volume is defined and docker_run_volume != ''
 
+    - name: "[Debian-like OS] Install requests into the specified (virtualenv) Debian 13"
+      ansible.builtin.pip:
+        name: requests
+        virtualenv: /var/tmp/.ansible
+      when: ansible_facts.distribution|lower == 'debian'
+            and ansible_facts.distribution_major_version|int > 12
+
     - name: Running the container
       docker_container:
         name: "{{ docker_run_appname }}"
