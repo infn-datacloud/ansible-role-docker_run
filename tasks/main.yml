@@ -29,12 +29,50 @@
         docker_run_volume_on_container: "{{ docker_run_host_volume }}:{{ docker_run_volume }}:rw"
       when: docker_run_volume is defined and docker_run_volume != ''
 
-    - name: "[Debian-like OS] Install requests into the specified (virtualenv) Debian 13"
+    - name: "[Debian-like OS] Check available Ansible Python environments"
+      ansible.builtin.stat:
+        path: "{{ item }}/bin/pip"
+      loop:
+        - /var/tmp/.mamba/envs/ansible
+        - /var/tmp/.ansible
+      register: docker_run_ansible_environment_candidates
+      when:
+        - ansible_facts.distribution | lower == 'debian'
+        - ansible_facts.distribution_major_version | int > 12
+    
+    - name: "[Debian-like OS] Select the Ansible Python environment"
+      ansible.builtin.set_fact:
+        docker_run_ansible_python_environment: >-
+          {{
+            (
+              docker_run_ansible_environment_candidates.results
+              | selectattr('stat.exists', 'equalto', true)
+              | map(attribute='item')
+              | list
+              | first
+            ) | default('')
+          }}
+      when:
+        - ansible_facts.distribution | lower == 'debian'
+        - ansible_facts.distribution_major_version | int > 12
+    
+    - name: "[Debian-like OS] Fail when no supported Python environment exists"
+      ansible.builtin.fail:
+        msg: >-
+          Cannot find pip in /var/tmp/.mamba/envs/ansible
+          or /var/tmp/.ansible.
+      when:
+        - ansible_facts.distribution | lower == 'debian'
+        - ansible_facts.distribution_major_version | int > 12
+        - docker_run_ansible_python_environment | length == 0
+    
+    - name: "[Debian-like OS] Install requests into the Ansible environment on Debian 13"
       ansible.builtin.pip:
         name: requests
-        virtualenv: /var/tmp/.ansible
-      when: ansible_facts.distribution|lower == 'debian'
-            and ansible_facts.distribution_major_version|int > 12
+        executable: "{{ docker_run_ansible_python_environment }}/bin/pip"
+      when:
+        - ansible_facts.distribution | lower == 'debian'
+        - ansible_facts.distribution_major_version | int > 12
 
     - name: Running the container
       docker_container:
